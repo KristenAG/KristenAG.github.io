@@ -9,22 +9,69 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
   <style>
 	* {
-        text-align: center;
+    text-align: center;
 		color: black;
 	}
-	#top, #main {
-        padding-top: 25px;
+	#top, #main, img {
+      padding-top: 25px;
   		padding-bottom: 25px;
     }
 	a {
     	color: blue;
     }
   </style>
-  <div class="w3-deep-purple w3-bottombar w3-border-cyan" id="top" >
-		<h1>Kristen Griessmann</h1>
+  <script src="email.js"></script>
+  <script src="https://waph-phung.github.io/clock.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script>
+  	$.get("https://v2.jokeapi.dev/joke/Any",
+					function (result) {
+						var input = result.joke;
+						if (input.length == 0) return;
+						console.log("From jokeAPI: " + JSON.stringify(result));
+						$("#response").html("A bit of humor: " + result.joke);
+					});
+	</script>
+  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%" id="menu">
+  	<img src="m15947053_smallimage.jpg" class="w3-opacity-min" alt="My headshot" width="100">
+  	<br>
+  	<canvas id="analog-clock" width="150" height="150" style="background-color:#000000"></canvas>
+		<script>
+			var canvas = document.getElementById("analog-clock");
+			var ctx = canvas.getContext("2d");
+			var radius = canvas.height / 2;
+			ctx.translate(radius, radius);
+			radius = radius * 0.90
+			setInterval(drawClock, 1000);
+
+			function drawClock() {
+				drawFace(ctx, radius);
+				drawNumbers(ctx, radius);
+				drawTime(ctx, radius);
+			}
+		</script>
+  	<div class="w3-text-green" id="digit-clock"></div>
+		<script>
+			function displayTime() {
+				document.getElementById('digit-clock').innerHTML = "Current time: " + new Date();
+			}
+			setInterval(displayTime, 500);
+		</script>
+		<br>
+		<p>Contact me:</p>
+  	<div id="email" onclick="showhideEmail()">Show my email</div>
+  </div>
+  <div style="margin-left:25%">
+  	<div class="w3-deep-purple w3-bottombar w3-border-cyan" id="top" >
+			<h1>Kristen Griessmann</h1>
+		</div>
+  	<div class="w3-blue-gray" id="main">
+			<p>A simple HTML page using the <a href="https://www.w3schools.com/html" target="_blank"> W3Schools template</a></p>
+			<p>Disclaimer: the text below is from jokeAPI, I am in no way responsible for the contents therein.</p>
+			<div id="response"></div>
+		</div>
 	</div>
-  <div class="w3-blue-gray" id="main">
-	<p>A simple HTML page.</p>
-	<p>Using the <a href="https://www.w3schools.com/html" target="_blank"> W3Schools template</a></p>
 </body>
 </html>
