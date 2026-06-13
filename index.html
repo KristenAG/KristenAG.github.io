@@ -19,6 +19,9 @@
 	a {
     	color: blue;
     }
+  .flower {
+  	margin-left: 25%;
+  }
   </style>
   <script src="email.js"></script>
   <script src="https://waph-phung.github.io/clock.js"></script>
@@ -40,7 +43,7 @@
   					var input = result.message;
   					if (input.length == 0) return;
   					console.log("From Dog API: " + JSON.stringify(result));
-  					$("#response2").html("<img src='" + result.message + "' width='500'>")
+  					$("#response2").html("<img src='" + result.message + "' width='50%'>")
   				});
   	getJoke();
   	setInterval(getJoke, 60000);
@@ -94,9 +97,9 @@
 						<p>Programming: C/C++, Python, Haskell, MATLAB, PowerShell</p>
 						<p>Mathematics: Differential Equations, Linear Algebra, Discrete Mathematics</p>
 			</div>
-			<img class="flower" src="20200215_141535.jpg" width="100%">
-			<img class="flower" src="20200630_183110.jpg" width="100%">
-			<img class="flower" src="20250721_204925.jpg" width="100%">
+			<img class="flower" src="20200215_141535.jpg" width="50%">
+			<img class="flower" src="20200630_183110.jpg" width="50%">
+			<img class="flower" src="20250721_204925.jpg" width="50%">
 			<script>
 				w3.slideshow(".flower", 5000);
 			</script>
