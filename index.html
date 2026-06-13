@@ -26,13 +26,24 @@
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://www.w3schools.com/lib/w3.js"></script>
   <script>
-  	$.get("https://v2.jokeapi.dev/joke/Any",
+  	function getJoke() {
+  		$.get("https://v2.jokeapi.dev/joke/Any?type=single",
 					function (result) {
 						var input = result.joke;
 						if (input.length == 0) return;
 						console.log("From jokeAPI: " + JSON.stringify(result));
-						$("#response").html("A bit of humor: " + result.joke);
+						$("#response").html("<p>A bit of humor: " + result.joke + "</p>");
 					});
+  	}
+  	$.getJSON("https://dog.ceo/api/breeds/image/random",
+  				function (result) {
+  					var input = result.message;
+  					if (input.length == 0) return;
+  					console.log("From Dog API: " + JSON.stringify(result));
+  					$("#response2").html("<img src='" + result.message + "' width='500'>")
+  				});
+  	getJoke();
+  	setInterval(getJoke, 60000);
 	</script>
   <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%" id="menu">
   	<img src="m15947053_smallimage.jpg" class="w3-opacity-min" alt="My headshot" width="100">
@@ -62,15 +73,36 @@
 		<br>
 		<p>Contact me:</p>
   	<div id="email" onclick="showhideEmail()">Show my email</div>
+  	<a href="https://info.flagcounter.com/nIz3"><img src="https://s01.flagcounter.com/countxl/nIz3/bg_FFFFFF/txt_000000/border_000000/columns_2/maxflags_10/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
   </div>
   <div style="margin-left:25%">
   	<div class="w3-deep-purple w3-bottombar w3-border-cyan" id="top" >
 			<h1>Kristen Griessmann</h1>
 		</div>
   	<div class="w3-blue-gray" id="main">
-			<p>A simple HTML page using the <a href="https://www.w3schools.com/html" target="_blank"> W3Schools template</a></p>
-			<p>Disclaimer: the text below is from jokeAPI, I am in no way responsible for the contents therein.</p>
+			<p>A simple HTML page using the <a href="https://www.w3schools.com/html" target="_blank"> W3Schools template</a>.</p>
+			<p>Created for the <a href="./waph.html" target="_blank"> Web Application Programming and Hacking class</a>.</p>
+			<div class="w3-bottombar w3-topbar w3-border-cyan" id="bio">
+				<h1>Bio</h1>
+					<h2>Education</h2>
+						<p>Sinclair Community College: Associates of Science - Engineering University Transfer</p>
+						<p>University of Cincinnati: Bachelor of Science - Cybersecurity Engineering, Arts & Sciences Minor - Mathematics</p>
+					<h2>Experience</h2>
+						<p>Student Mathematics Tutor at Sinclair Community College: tutored College Algebra, Trigonometry, Calculus, and Discrete Mathematics</p>
+						<p>IT Co-op at Danis Construction Company: helpdesk, troubleshooting, setup and decommission of electronic equipment</p>
+					<h2>Skills</h2>
+						<p>Programming: C/C++, Python, Haskell, MATLAB, PowerShell</p>
+						<p>Mathematics: Differential Equations, Linear Algebra, Discrete Mathematics</p>
+			</div>
+			<img class="flower" src="20200215_141535.jpg" width="100%">
+			<img class="flower" src="20200630_183110.jpg" width="100%">
+			<img class="flower" src="20250721_204925.jpg" width="100%">
+			<script>
+				w3.slideshow(".flower", 5000);
+			</script>
+			<p class="w3-small">Disclaimer: the text below is from jokeAPI and the picture is from Dog API, I am in no way responsible for the contents therein.</p>
 			<div id="response"></div>
+			<div id="response2"></div>
 		</div>
 	</div>
 </body>
