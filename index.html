@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Home-Kristen Griessmann</title>
 </head>
-<body>
+<body onload="checkCookie()">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
   <style>
@@ -38,6 +38,7 @@
 						$("#response").html("<p>A bit of humor: " + result.joke + "</p>");
 					});
   	}
+  	
   	$.getJSON("https://dog.ceo/api/breeds/image/random",
   				function (result) {
   					var input = result.message;
@@ -45,11 +46,47 @@
   					console.log("From Dog API: " + JSON.stringify(result));
   					$("#response2").html("<img src='" + result.message + "' width='50%'>")
   				});
+  	
   	getJoke();
+  	
   	setInterval(getJoke, 60000);
+  	
+  	function setCookie(cname,cvalue,exdays) {
+  		const date = new Date();
+ 			date.setTime(date.getTime() + (exdays*24*60*60*1000));
+  		let expires = "expires=" + date.toUTCString();
+  		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function getCookie(cname) {
+  		let name = cname + "=";
+  		let decodedCookie = decodeURIComponent(document.cookie);
+  		let ca = decodedCookie.split(';');
+  		for(let i = 0; i < ca.length; i++) {
+    		let c = ca[i];
+    		while (c.charAt(0) == ' ') {
+      		c = c.substring(1);
+    		}
+    		if (c.indexOf(name) == 0) {
+      		return c.substring(name.length, c.length);
+    		}
+  		}
+  		return "";
+		}
+
+		function checkCookie() {
+  		let date = getCookie("date");
+  		if (date != "") {
+    		alert("Welcome back! Your last visit was " + date);
+  		}
+  		else {
+     		user = alert("Welcome to my homepage for the first time!");
+     	}
+  		setCookie("date", Date(), 365);
+		}
 	</script>
-  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%" id="menu">
-  	<img src="m15947053_smallimage.jpg" class="w3-opacity-min" alt="My headshot" width="100">
+  <div class="w3-sidebar w3-black w3-bar-block" style="width:25%" id="menu">
+  	<img src="m15947053_smallimage.jpg" class="w3-opacity" alt="My headshot" width="33%">
   	<br>
   	<canvas id="analog-clock" width="150" height="150" style="background-color:#000000"></canvas>
 		<script>
@@ -74,8 +111,8 @@
 			setInterval(displayTime, 500);
 		</script>
 		<br>
-		<p>Contact me:</p>
-  	<div id="email" onclick="showhideEmail()">Show my email</div>
+		<p class="w3-text-cyan">Contact me:</p>
+  	<div class="w3-text-cyan" id="email" onclick="showhideEmail()">Show my email</div>
   	<a href="https://info.flagcounter.com/nIz3"><img src="https://s01.flagcounter.com/countxl/nIz3/bg_FFFFFF/txt_000000/border_000000/columns_2/maxflags_10/viewers_0/labels_1/pageviews_0/flags_0/percent_1/" alt="Flag Counter" border="0"></a>
   </div>
   <div style="margin-left:25%">
@@ -97,12 +134,12 @@
 						<p>Programming: C/C++, Python, Haskell, MATLAB, PowerShell</p>
 						<p>Mathematics: Differential Equations, Linear Algebra, Discrete Mathematics</p>
 			</div>
-			<img class="flower" src="20200215_141535.jpg" width="50%">
-			<img class="flower" src="20200630_183110.jpg" width="50%">
-			<img class="flower" src="20250721_204925.jpg" width="50%">
-			<script>
-				w3.slideshow(".flower", 5000);
-			</script>
+			<div class="w3-bottombar w3-border-cyan">
+				<img class="flower" src="20200215_141535.jpg" width="50%">
+				<img class="flower" src="20200630_183110.jpg" width="50%">
+				<img class="flower" src="20250721_204925.jpg" width="50%">
+				<script>w3.slideshow(".flower", 5000);</script>
+		</div>
 			<p class="w3-small">Disclaimer: the text below is from jokeAPI and the picture is from Dog API, I am in no way responsible for the contents therein.</p>
 			<div id="response"></div>
 			<div id="response2"></div>
